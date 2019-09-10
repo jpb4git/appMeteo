@@ -1,11 +1,11 @@
 export const app = {
     state: {
-        name:'',
+        name: '',
     },
     reducers: {
-        setName(state,name){
-            return{...state, name};
+        setName(state, name) {
+            return {...state, name};
+        },
     },
-    },
-    effects:{},
+    effects: {},
 };

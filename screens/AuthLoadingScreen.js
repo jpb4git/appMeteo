@@ -1,22 +1,22 @@
-import React, { useEffect} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {ActivityIndicator, StatusBar, View, AsyncStorage } from 'react-native';
+import {ActivityIndicator, StatusBar, View, AsyncStorage} from 'react-native';
 import {useReduxContext} from "react-redux/lib/hooks/useReduxContext";
 
 const AuthLoadingScreen = props => {
 
     _bootstrapAsync = async () => {
         const userToken = await AsyncStorage.getItem('name');
-        props.navigation.navigate(userToken ? 'App': 'Auth');
+        props.navigation.navigate(userToken ? 'App' : 'Auth');
     };
-    useEffect(() =>{
+    useEffect(() => {
         _bootstrapAsync();
-    },[]);
+    }, []);
 
     return (
         <View>
             <ActivityIndicator/>
-            <StatusBar barStyle="default" />
+            <StatusBar barStyle="default"/>
         </View>
     );
 };
