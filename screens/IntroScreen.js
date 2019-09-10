@@ -10,12 +10,12 @@ const styleSheet = {
         width: width,
         flex: 1,
         flexDirection: 'column',
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     nameStyle: {
-        color:'red',
-        fontSize:25,
+        color: 'red',
+        fontSize: 25,
         fontWeight: 'bold',
     },
 };

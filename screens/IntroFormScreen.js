@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {View, Text, TextInput, Button, Dimensions, AsyncStorage} from 'react-native'
@@ -17,9 +17,9 @@ const styleSheet = {
         color: 'black',
         fontSize: 18,
     },
-    input:{
+    input: {
         width: '100%',
-        height:40,
+        height: 40,
         borderColor: 'gray',
         borderWidth: 1,
     },
@@ -27,8 +27,8 @@ const styleSheet = {
 
 const IntroFormScreen = props => {
 
-    async function handleSubmit(){
-        if (name !==''){
+    async function handleSubmit() {
+        if (name !== '') {
             await AsyncStorage.setItem('name', name);
             navigation.navigate('Welcome');
         }
@@ -37,29 +37,29 @@ const IntroFormScreen = props => {
     const [name, setName] = useState('');
     const {dispatch, navigation} = props;
 
-    return(
+    return (
         <View style={styleSheet.container}>
-            <Text style={styleSheet.label} >Prénom</Text>
+            <Text style={styleSheet.label}>Prénom</Text>
             <TextInput
                 style={styleSheet.input}
                 onChangeText={(text) => setName(text)}
                 value={name}
-                />
-                <Button
-                    onPress={handleSubmit}
-                    title="OK"
-                    color={"#841584"}
-                    />
-            </View>
-        );
-    }
+            />
+            <Button
+                onPress={handleSubmit}
+                title="OK"
+                color={"#841584"}
+            />
+        </View>
+    );
+}
 
-    IntroFormScreen.propTypes = {
-        dispatch: PropTypes.func.isRequired,
-        navigation: PropTypes.shape({
+IntroFormScreen.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    navigation: PropTypes.shape({
         navigate: PropTypes.func,
-        }).isRequired,
-    };
+    }).isRequired,
+};
 
-    export default connect()(IntroFormScreen);
+export default connect()(IntroFormScreen);
 
