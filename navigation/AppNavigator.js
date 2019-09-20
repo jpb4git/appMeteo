@@ -3,22 +3,19 @@ import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {AntDesign} from '@expo/vector-icons';
+import HomeScreen from '../screens/HomeScreen';
+import AuthLoadingScreen from '../screens/AuthLoadingScreen';
+import IntroScreen from '../screens/IntroScreen';
+import IntroFormScreen from '../screens/IntroFormScreen';
+import EditScreen from '../screens/EditScreen';
+import AddCityScreen from '../screens/AddCityScreen';
 
-import homeScreen from '../screens/homeScreen';
-import authLoadingScreen from '../screens/authLoadingScreen';
-import introScreen from '../screens/introScreen';
-import introFormScreen from '../screens/introFormScreen';
-import editScreen from '../screens/editScreen';
-import addCityScreen from '../screens/addCityScreen';
-
-const AppStack = createStackNavigator({Home: homeScreen});
-const AuthStack = createStackNavigator({SignIn: introFormScreen, Welcome: introScreen});
-
-const HomeStack = createStackNavigator({ Home: homeScreen});
-
+const AppStack = createStackNavigator({Home: HomeScreen});
+const AuthStack = createStackNavigator({SignIn: IntroFormScreen, Welcome: IntroScreen});
+const HomeStack = createStackNavigator({Home: HomeScreen});
 const TabNavigator = createBottomTabNavigator({
     Home: {
-        screen: homeScreen,
+        screen: HomeScreen,
         navigationOptions: {
             tabBarLabel: "Home",
             tabBarIcon: ({focused, tintColor}) => (
@@ -27,18 +24,18 @@ const TabNavigator = createBottomTabNavigator({
         }
     },
     Add: {
-        screen: addCityScreen,
+        screen: AddCityScreen,
         navigationOptions: {
-            tabBarLabel: "",
+            tabBarLabel: "Ajoutez une ville",
             tabBarIcon: ({focused, tintColor}) => (
                 <AntDesign name="pluscircleo" size={32} color={focused ? 'red' : 'black'}/>
             )
         }
     },
     Edit: {
-        screen: editScreen,
+        screen: EditScreen,
         navigationOptions: {
-            tabBarLabel:"profile",
+            tabBarLabel: "Profil",
             tabBarIcon: ({focused, tintColor}) => (
                 <AntDesign name="user" size={32} color={focused ? 'red' : 'black'}/>
             )
@@ -49,7 +46,7 @@ const TabNavigator = createBottomTabNavigator({
 
 export default createAppContainer(createSwitchNavigator(
     {
-        AuthLoading: authLoadingScreen,
+        AuthLoading: AuthLoadingScreen,
         App: TabNavigator,
         Auth: AuthStack,
     },

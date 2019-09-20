@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {ActivityIndicator, StatusBar, View, AsyncStorage} from 'react-native';
 import {useReduxContext} from "react-redux/lib/hooks/useReduxContext";
 
-const authLoadingScreen = props => {
+const AuthLoadingScreen = props => {
 
     _bootstrapAsync = async () => {
         const userToken = await AsyncStorage.getItem('name');
@@ -21,11 +21,11 @@ const authLoadingScreen = props => {
     );
 };
 
-authLoadingScreen.propTypes = {
+AuthLoadingScreen.propTypes = {
     navigation: PropTypes.shape({
         navigate: PropTypes.func,
     }).isRequired,
 };
 
-export default authLoadingScreen;
+export default AuthLoadingScreen;
 

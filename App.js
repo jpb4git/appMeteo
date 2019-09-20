@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {init} from '@rematch/core';
 import {Provider} from 'react-redux';
-import {app} from './models/appModel';
+import {app} from './models/AppModel';
 import AppNavigator from './navigation/AppNavigator';
 
 

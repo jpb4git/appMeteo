@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {View, Text, Dimensions, TextInput, ImageBackground, Button, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import ItemList from '../components/ItemList';
+import {AntDesign} from "@expo/vector-icons";
 
 const {width} = Dimensions.get('window');
 const styleSheet = {
@@ -19,13 +20,19 @@ const styleSheet = {
         marginTop: 250,
     },
     input: {
-        height: 40,
-        width: '50%',
+        height: 50,
+        width: 250,
         backgroundColor: 'white',
         marginBottom: 5,
+        borderRadius: 10,
+        textAlign: 'center',
+    },
+    button: {
+        marginBottom: 5,
+        borderRadius: 10,
     },
 };
-const addCityScreen = props => {
+const AddCityScreen = props => {
     function handleSubmit() {
         if (city !== '') {
             props.dispatch({
@@ -34,8 +41,9 @@ const addCityScreen = props => {
             });
         }
     }
+
     const [city, setCity] = useState('');
-    const { cities } = props;
+    const {cities} = props;
     console.log(cities);
     return (
         <ImageBackground
@@ -43,7 +51,7 @@ const addCityScreen = props => {
             style={{width: '100%', height: '100%'}}>
             <View style={styleSheet.container}>
 
-                <Text style={styleSheet.textStyle}>Entrez une ville :</Text>
+                <Text style={styleSheet.textStyle}>Ajoutez une ville :</Text>
                 <TextInput
                     style={styleSheet.input}
                     onChangeText={(text) => setCity(text)}
@@ -56,19 +64,18 @@ const addCityScreen = props => {
                 />
                 <FlatList
                     data={cities}
-                    renderItem={({ item }) => <ItemList  value={item} />}
-                    keyExtractor={item => item}
+                    renderItem={({item, index}) => <ItemList key={`${item}-${index}`} value={item} index={index}/>}
                 />
             </View>
         </ImageBackground>
     );
 }
 
-addCityScreen.propTypes = {};
+AddCityScreen.propTypes = {};
 
 function mapStateToProps(state) {
     return state.app;
 }
 
-export default connect(mapStateToProps)(addCityScreen);
+export default connect(mapStateToProps)(AddCityScreen);
 

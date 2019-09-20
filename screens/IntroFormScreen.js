@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {View, Text, TextInput, Button, Dimensions, AsyncStorage, ImageBackground} from 'react-native'
 
 const {width} = Dimensions.get('window');
-
 const styleSheet = {
     container: {
         width: width,
@@ -18,14 +17,25 @@ const styleSheet = {
         fontSize: 18,
     },
     input: {
-        height: 40,
-        width: '50%',
-        backgroundColor: 'white',
+        width: 250,
+        backgroundColor:'white',
+        height:50,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingLeft:15,
+        paddingRight:15,
+        borderRadius:10,
+        marginBottom:10,
+        marginTop:5,
+        textAlign: 'center',
+    },
+    button: {
         marginBottom: 5,
+        borderRadius:10,
     },
 };
-
-const introFormScreen = props => {
+const IntroFormScreen = props => {
 
     function handleSubmit() {
         if (name !== '') {
@@ -45,7 +55,7 @@ const introFormScreen = props => {
             source={{uri: 'https://images.unsplash.com/photo-1448842215777-02928daa9d5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=632&q=80'}}
             style={{width: '100%', height: '100%'}}>
             <View style={styleSheet.container}>
-                <Text style={styleSheet.label}>Prénom</Text>
+                <Text style={styleSheet.label}>Votre nom</Text>
                 <TextInput
                     style={styleSheet.input}
                     onChangeText={(text) => setName(text)}
@@ -61,12 +71,12 @@ const introFormScreen = props => {
     );
 }
 
-introFormScreen.propTypes = {
+IntroFormScreen.propTypes = {
     dispatch: PropTypes.func.isRequired,
     navigation: PropTypes.shape({
         navigate: PropTypes.func,
     }).isRequired,
 };
 
-export default connect()(introFormScreen);
+export default connect()(IntroFormScreen);
 

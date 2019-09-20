@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {View, Text, Dimensions, AsyncStorage, ImageBackground} from 'react-native';
 
 const {width} = Dimensions.get('window');
-
 const styleSheet = {
     container: {
         width: width,
@@ -28,7 +27,7 @@ const styleSheet = {
     },
 };
 
-const introScreen = props => {
+const IntroScreen = props => {
     useEffect(() => {
         async function getName() {
             const temp = await AsyncStorage.getItem('name');
@@ -50,21 +49,21 @@ const introScreen = props => {
         <ImageBackground
             source={{uri: 'https://images.unsplash.com/photo-1561989848-525a8b97dd98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=588&q=80'}}
             style={{width: '100%', height: '100%'}}>
-        <View style={styleSheet.container}>
+            <View style={styleSheet.container}>
 
                 <Text style={styleSheet.textStyle}> {`Bonjour ${props.app.name}!`}</Text>
-        </View>
+            </View>
         </ImageBackground>
     );
 }
 
-introScreen.propTypes = {
+IntroScreen.propTypes = {
     navigation: PropTypes.shape({
         navigate: PropTypes.func,
     }).isRequired,
 };
 
-export default connect(state=>state) (introScreen);
+export default connect(state => state)(IntroScreen);
 
 
 
